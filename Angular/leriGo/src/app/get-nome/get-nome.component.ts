@@ -43,7 +43,7 @@ export class GetNomeComponent implements OnInit {
   ngOnInit(){
     window.scroll(0,0)
 
-    let nome : string = this.route.snapshot.params['nomeProduto']
+    let nome : string = this.route.snapshot.params["nomeProduto"]
 
 
     this.findByNomeProdutos(nome)
@@ -132,13 +132,14 @@ carregarImagemPreview(event: any) {
 }
 
 findByNomeProdutos(nome: string) {
-  if (nome === "" || nome == undefined){
+  if (nome === ''|| nome == undefined){
     this.findAllProdutos()
-  } else{
+  }else{
     this.produtoService.getByNomeProduto(nome).subscribe((resp: Produto[]) => {
       this.listaProduto = resp
     })
   }
+  
 }
 
 }
