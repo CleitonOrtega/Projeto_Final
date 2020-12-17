@@ -66,8 +66,6 @@
 
   <div class="row">
 
-
-    <div class="container justify-content-center">Produtos adicionados recentes </div>
     <div class="col-md-12  mt-5 my-5">
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
@@ -88,11 +86,11 @@
               <div class="detail-box">
                 <!--type-------->
                 <div class="type">
-                  <a href="#">Teste</a>
-                  <span>Testoso</span>
+                  <a href="#">Blusa Preta</a>
+                  <span>Quantidade:1</span>
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$23</a>
+                <a href="#" class="price">R$59,99</a>
 
               </div>
             </div>
@@ -116,11 +114,11 @@
               <div class="detail-box">
                 <!--type-------->
                 <div class="type">
-                  <a href="#">Teste</a>
-                  <span>Testoso</span>
+                  <a href="#">Jaqueta Preta</a>
+                  <span>Quantidade: 1</span>
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$23</a>
+                <a href="#" class="price">R$99,99</a>
 
               </div>
             </div>
@@ -144,11 +142,11 @@
               <div class="detail-box">
                 <!--type-------->
                 <div class="type">
-                  <a href="#">Teste</a>
-                  <span>Testoso</span>
+                  <a href="#">Relogio</a>
+                  <span>Quantidade:1</span>
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$23</a>
+                <a href="#" class="price">R$199,99</a>
 
               </div>
             </div>
@@ -172,11 +170,11 @@
               <div class="detail-box">
                 <!--type-------->
                 <div class="type">
-                  <a href="#">Teste</a>
-                  <span>Testoso</span>
+                  <a href="#">Tenis Nike</a>
+                  <span>Quantidade:1</span>
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$23</a>
+                <a href="#" class="price">R$99,99</a>
 
               </div>
             </div>
@@ -221,7 +219,7 @@
     </div>
     
   </div>
-  <div class="col d-flex justify-content-end align-items-end mb-5 mt-2">
+  <div class="col d-flex justify-content-end align-items-end mb-5 mt-2" *ngIf='auth.btnSair()'>
     <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
     </pagination-controls>
 

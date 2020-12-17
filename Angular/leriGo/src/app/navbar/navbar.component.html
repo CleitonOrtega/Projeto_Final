@@ -39,6 +39,12 @@
         </button>
       </div>
 
+      <div class="pl-4  d-flex align-items-center" *ngIf='auth.btnSair()'>
+        <button class="btn btn-outline-primary" routerLink="/login" (click)='sair()'>
+          <p class="tm-fonte">Sair</p>
+        </button>
+      </div>
+
     </div>
 
   </nav>
