@@ -5,6 +5,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AppModule } from '../app.module';
 import { Categoria } from '../model/categoria';
 import { Produto } from '../model/produto';
+import { AuthService } from '../service/auth.service';
 import { CategoriaService } from '../service/categoria.service';
 import { ProdutoService } from '../service/produto.service';
 declare var $: any;
@@ -59,7 +60,8 @@ export class HomeComponent implements OnInit {
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public auth: AuthService
   ) {}
 
 

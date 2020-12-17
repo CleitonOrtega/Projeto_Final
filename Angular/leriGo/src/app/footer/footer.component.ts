@@ -18,9 +18,18 @@ export class FooterComponent implements OnInit {
   faLinkedin = faLinkedin
   faGithub = faGithub
 
+ public id!: string
+  foto!: string
+  nome: string = "bruno"
+  seletor!: string
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  identificarPessoa(){
+    
   }
 
 }
