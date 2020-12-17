@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -23,9 +22,7 @@ import { GetTipoComponent } from './get-tipo/get-tipo.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProdutoComponent } from './produto/produto.component';
 import { AlertasComponent } from './alertas/alertas.component';
-import { ModalModule } from 'ngx-bootstrap/modal'
-
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
