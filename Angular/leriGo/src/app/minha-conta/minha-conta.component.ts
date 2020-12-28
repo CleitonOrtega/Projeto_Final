@@ -1,12 +1,15 @@
 import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Categoria } from '../model/categoria';
 import { Produto } from '../model/produto';
+import { Usuario } from '../model/usuario';
 import { AlertasService } from '../service/alertas.service';
 import { CategoriaService } from '../service/categoria.service';
 import { MidiaService } from '../service/midia.service';
 import { ProdutoService } from '../service/produto.service';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-minha-conta',
@@ -23,15 +26,22 @@ export class MinhaContaComponent implements OnInit {
   categoria: Categoria = new Categoria()
   listaCategoria!: Categoria[]
 
+  env = environment;
 
   carrinho: Produto = new Produto()
   listaCarrinho!: Produto[]
 
   foto!: File
+
+  usuario: Usuario = new Usuario()
+
+  senha!: string
+  confirmarSenha!: string
   
   constructor(
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
+    private usuarioService: UsuarioService,
     private router: Router,
     private route: ActivatedRoute,
     private midiaService: MidiaService,
@@ -44,6 +54,9 @@ export class MinhaContaComponent implements OnInit {
   ngOnInit(){
     window.scroll(0,0)
 
+    console.log(this.env.id)
+
+    this.getByIdUsuario()
     this.findAllCategorias()
     this.findAllProdutos()
   }
@@ -132,6 +145,33 @@ carregarImagemPreview(event: any) {
   this.foto = event.target.files[0]
   let url = URL.createObjectURL(this.foto);
   (<HTMLImageElement>document.querySelector('img#imagem-preview'))!.src = url
+}
+
+getByIdUsuario(){
+  this.usuarioService.getByIdUsuario(this.env.id).subscribe((resp: Usuario) =>{
+    this.usuario = resp
+  })
+}
+
+atualizarDados(){
+
+  if(this.senha == this.confirmarSenha){
+
+    this.usuario.senha = this.senha
+    this.usuarioService.putUsuario(this.usuario).subscribe((resp: Usuario) =>{
+      this.usuario = resp
+      this.env.nome = this.usuario.nome
+      this.env.email = this.usuario.email
+      this.env.senha = this.usuario.senha
+      window.scroll(0,0)
+      this.alert.showAlertSuccess('Dados Alterados com sucesso')
+    })
+
+  }
+
+
+  
+  
 }
 
 }

@@ -67,18 +67,10 @@ export class HomeComponent implements OnInit {
 
 
   public ngOnInit(){
-
-    
+    window.scroll(0,0)
 
     this.findAllCategorias()
     this.findAllProdutos()
-  }
-
-  findAllProdutos(){
-    this.produtoService.getAllProdutos().subscribe((resp: Produto[])=>{
-      this.listaProduto = resp
-      
-    })
   }
 
   findAllCategorias(){
@@ -87,9 +79,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  
-
-
-
+  findAllProdutos(){
+    this.produtoService.getAllProdutos().subscribe((resp: Produto[])=>{
+      this.listaProduto = resp
+    })
+  }
 
 }

@@ -185,11 +185,11 @@
     </div>
   </div>
 
-  <div class="row"  *ngIf='auth.btnSair()'>
+  <div class="row" >
     <div class="col-md-12 d-flex justify-content-center fonte" >
       <h1 class="fonte" >Produtos</h1>
     </div>
-    <div class="col-md-3 mb-5 "
+    <div class="col-md-3 mb-5"
       *ngFor="let item of listaProduto | paginate: { itemsPerPage: 8, currentPage: paginaAtual }; let i = index">
       <div class="box" style="width: 14rem;">
         <div class="box-body">
@@ -219,7 +219,7 @@
     </div>
     
   </div>
-  <div class="col d-flex justify-content-end align-items-end mb-5 mt-2" *ngIf='auth.btnSair()'>
+  <div class="col d-flex justify-content-end align-items-end mb-5 mt-2">
     <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
     </pagination-controls>
 
