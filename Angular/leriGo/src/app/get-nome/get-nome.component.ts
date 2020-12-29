@@ -24,6 +24,7 @@ export class GetNomeComponent implements OnInit {
   tipoCategoria!: string
   nomeProduto!: string
   
+  teste: number = 1
 
   carrinho: Produto = new Produto()
   listaCarrinho!: Produto[]
@@ -44,7 +45,6 @@ export class GetNomeComponent implements OnInit {
 
   ngOnInit(){
     window.scroll(0,0)
-
     let nome : string = this.route.snapshot.params['nomeProduto']
 
 
@@ -137,9 +137,12 @@ findByNomeProdutos(nome: string) {
   if (nome === "" || nome == undefined){
     this.findAllProdutos()
   } else{
-    this.produtoService.getByNomeProduto(nome).subscribe((resp: Produto[]) => {
-      this.listaProduto = resp
-    })
+    if(this.teste == 1){
+      this.produtoService.getByNomeProduto(nome).subscribe((resp: Produto[]) => {
+        this.listaProduto = resp
+      })
+    }
+    
   }
 }
 

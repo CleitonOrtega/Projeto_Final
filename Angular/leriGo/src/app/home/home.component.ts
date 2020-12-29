@@ -56,6 +56,8 @@ export class HomeComponent implements OnInit {
 
   numVezes: number = 0
 
+  idCategoriaProduto : number = 1
+
   constructor(
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,

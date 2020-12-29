@@ -33,7 +33,10 @@ export class GetTipoComponent implements OnInit {
     private alert: AlertasService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    let idCategorias : number = this.route.snapshot.params['idCategoriaProduto']
+    
+    this.findAllByIdCategoria(idCategorias)
   }
 
   findAllCategorias(){
@@ -50,5 +53,11 @@ export class GetTipoComponent implements OnInit {
         this.listaCategoria = resp
       })
     }
+  }
+
+  findAllByIdCategoria(id: number){
+    this.produtoService.getByIdCategoria(id).subscribe((resp: Produto[]) => {
+      this.listaProduto = resp
+    })
   }
 }

@@ -70,29 +70,29 @@
                             <div class="form-group col-md-6 pr-4">
                                 <label class="pl-1" for="exampleFormControlSelect1">Categoria:</label>
                                 <select class="form-control" id="exampleFormControlSelect1"
-                                    [(ngModel)]="categoria.idCategoria" [ngModelOptions]="{standalone: true}">
+                                [(ngModel)]="tipoProduto" [ngModelOptions]="{standalone: true}">
                                     <option>Vestuário</option>
                                     <option>Calçado</option>
                                     <option>Acessório</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" >
                             <div class="col-md-6 d-flex justify-content-end">
                                 <div class="form-check">
 
                                     <label class="form-check-label  mr-4" for="exampleRadios1">
                                         Masculino
                                     </label>
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios1" value="option1" checked>
+                                    <input class="form-check-input" type="radio" name="masculino"
+                                        id="masculino" value="masculino" checked >
                                 </div>
 
                             </div>
                             <div class="col-md-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios2" value="option2">
+                                    <input class="form-check-input" type="radio" name="feminino"
+                                        id="feminino" value="feminino">
                                     <label class="form-check-label" for="exampleRadios2">
                                         Feminino
                                     </label>
@@ -227,7 +227,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Categoria</label>
                                 <select class="form-control" id="exampleFormControlSelect1"
-                                    [(ngModel)]="categoria.idCategoria" [ngModelOptions]="{standalone: true}">
+                                    [(ngModel)]="tipoProduto" [ngModelOptions]="{standalone: true}">
                                     <option>Vestuário</option>
                                     <option>Calçado</option>
                                     <option>Acessório</option>
@@ -241,18 +241,20 @@
                                         <label class="form-check-label  mr-4" for="exampleRadios1">
                                             Masculino
                                         </label>
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios1" value="option1" checked>
+                                        <input class="form-check-input" type="radio" name="masculino"
+                                            id="masculino" value="masculino" checked  [(ngModel)]="sexo" [ngModelOptions]="{standalone: true}">
                                     </div>
 
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check">
+
                                         <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios2" value="option2">
+                                            id="feminino" value="feminino">
                                         <label class="form-check-label" for="exampleRadios2">
                                             Feminino
                                         </label>
+                                        
                                     </div>
                                 </div>
 

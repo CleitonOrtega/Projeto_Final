@@ -18,6 +18,9 @@ import { UsuarioService } from '../service/usuario.service';
 })
 export class MinhaContaComponent implements OnInit {
 
+  tipoProduto!: string
+  sexo: string = "masculino"
+
   public paginaAtual = 1;
   idProd!: number
   idCate!: number
@@ -85,12 +88,27 @@ export class MinhaContaComponent implements OnInit {
   publicarAnuncio() {
     this.categoria.idCategoria = this.idCate
 
-    if (this.produto.nome == null || this.produto.quantidade < 1 || this.produto.preco == null || this.produto.foto == null) {
+    if (this.produto.nome == null || this.produto.quantidade < 1 || this.produto.preco == null || this.produto.foto == null || this.tipoProduto == null) {
       this.alert.showAlertDanger('Preencha todos os campos antes de publicar')
     } else {
       if (this.foto != null) {
         this.midiaService.uploadPhoto(this.foto).subscribe((resp: any) => {
           this.produto.foto = resp.secure_url
+
+          if(this.sexo == "masculino" && this.tipoProduto == "Vestuário"){
+            this.categoria.idCategoria = 1
+          }else if (this.sexo != "masculino" && this.tipoProduto == "Vestuário"){
+            this.categoria.idCategoria = 2
+          }else if (this.sexo == "masculino" && this.tipoProduto == "Calçado"){
+            this.categoria.idCategoria = 3
+          }else if (this.sexo != "masculino" && this.tipoProduto == "Calçado"){
+            this.categoria.idCategoria = 4
+          }else if (this.sexo == "masculino" && this.tipoProduto == "Acessórios"){
+            this.categoria.idCategoria = 5
+          }else if (this.sexo != "masculino" && this.tipoProduto == "Acessórios"){
+            this.categoria.idCategoria = 6
+          }
+
           this.produtoService.postProduto(this.produto).subscribe((resp: Produto) => {
             this.produto = resp
             this.produto = new Produto()
