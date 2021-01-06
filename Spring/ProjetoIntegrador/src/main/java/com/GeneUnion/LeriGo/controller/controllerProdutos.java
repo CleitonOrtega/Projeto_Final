@@ -43,8 +43,8 @@ public class controllerProdutos {
 	}
 	
 	@GetMapping("/idCategoria/{idCategoria}")
-	public ResponseEntity<List<modelProdutos>> getByIdCategoria(){
-		return ResponseEntity.ok(repository.findAllByIdCategoria());
+	public ResponseEntity<List<modelProdutos>> getByIdCategoria(@PathVariable Long id){
+		return ResponseEntity.ok(repository.findAllByIdCategoria(id));
 	}
 	
 	@PostMapping

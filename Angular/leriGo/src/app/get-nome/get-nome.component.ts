@@ -14,6 +14,8 @@ import { ProdutoService } from '../service/produto.service';
 })
 export class GetNomeComponent implements OnInit {
 
+
+  
   idProd!: number
   idCate!: number
   produto: Produto = new Produto()
@@ -24,8 +26,7 @@ export class GetNomeComponent implements OnInit {
   tipoCategoria!: string
   nomeProduto!: string
   
-  teste: number = 1
-
+  public paginaAtual = 1;
   carrinho: Produto = new Produto()
   listaCarrinho!: Produto[]
 
@@ -137,11 +138,10 @@ findByNomeProdutos(nome: string) {
   if (nome === "" || nome == undefined){
     this.findAllProdutos()
   } else{
-    if(this.teste == 1){
       this.produtoService.getByNomeProduto(nome).subscribe((resp: Produto[]) => {
         this.listaProduto = resp
       })
-    }
+    
     
   }
 }

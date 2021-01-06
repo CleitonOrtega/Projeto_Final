@@ -18,8 +18,9 @@ import { UsuarioService } from '../service/usuario.service';
 })
 export class MinhaContaComponent implements OnInit {
 
-  tipoProduto!: string
-  sexo: string = "masculino"
+  tipoProduto: number = 1
+  testeTipo!: string 
+  sexo!: string
 
   public paginaAtual = 1;
   idProd!: number
@@ -79,14 +80,23 @@ export class MinhaContaComponent implements OnInit {
     })
   }
 
-  findByIdCategoria(){
-    this.categoriaService.getByIdCategoria(this.idCate).subscribe((resp : Categoria)=> {
+  findByIdCategoria(id : number){
+    this.categoriaService.getByIdCategoria(id).subscribe((resp : Categoria)=> {
       this.categoria = resp
     })
   }
 
   publicarAnuncio() {
-    this.categoria.idCategoria = this.idCate
+
+    if(this.testeTipo == '1'){
+      this.tipoProduto = 1
+    }else if(this.testeTipo == '3'){
+      this.tipoProduto = 3
+    }else{
+      this.tipoProduto = 5
+    }
+    
+    this.findByIdCategoria(this.tipoProduto)
 
     if (this.produto.nome == null || this.produto.quantidade < 1 || this.produto.preco == null || this.produto.foto == null || this.tipoProduto == null) {
       this.alert.showAlertDanger('Preencha todos os campos antes de publicar')
@@ -95,34 +105,21 @@ export class MinhaContaComponent implements OnInit {
         this.midiaService.uploadPhoto(this.foto).subscribe((resp: any) => {
           this.produto.foto = resp.secure_url
 
-          if(this.sexo == "masculino" && this.tipoProduto == "Vestuário"){
-            this.categoria.idCategoria = 1
-          }else if (this.sexo != "masculino" && this.tipoProduto == "Vestuário"){
-            this.categoria.idCategoria = 2
-          }else if (this.sexo == "masculino" && this.tipoProduto == "Calçado"){
-            this.categoria.idCategoria = 3
-          }else if (this.sexo != "masculino" && this.tipoProduto == "Calçado"){
-            this.categoria.idCategoria = 4
-          }else if (this.sexo == "masculino" && this.tipoProduto == "Acessórios"){
-            this.categoria.idCategoria = 5
-          }else if (this.sexo != "masculino" && this.tipoProduto == "Acessórios"){
-            this.categoria.idCategoria = 6
-          }
-
+          this.produto.categoria = this.categoria
           this.produtoService.postProduto(this.produto).subscribe((resp: Produto) => {
             this.produto = resp
             this.produto = new Produto()
             this.alert.showAlertSuccess('Produto anunciado com sucesso!')
-            window.location.reload()
             this.findAllProdutos()
           })
         })
       } else {
+        this.produto.categoria = this.categoria
         this.produtoService.postProduto(this.produto).subscribe((resp: Produto)=> {
           this.produto = resp
+          
           this.produto = new Produto()
           this.alert.showAlertSuccess('Produto anunciado com sucesso!')
-          window.location.reload()
           this.findAllProdutos()
         })
       }

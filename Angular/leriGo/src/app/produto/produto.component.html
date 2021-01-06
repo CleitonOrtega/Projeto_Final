@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="footer">
-        <button type="button" [routerLink]="['/carrinho', produto.idProduto]">
+        <button type="button" (click)="adicionandoCarrinho()">
           <span>Adicione ao carrinho</span>
         </button>
         

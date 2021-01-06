@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { refresh } from 'aos';
 import { environment } from 'src/environments/environment.prod';
 import { Categoria } from '../model/categoria';
 import { Produto } from '../model/produto';
@@ -94,4 +95,11 @@ export class NavbarComponent implements OnInit {
     environment.senha = ""
   }
 
+  pesquisar(){
+    if(this.router.url == '/get-nome'){
+      this.router.navigate(['/get-nome', this.nomeProduto])
+    }else{
+      this.router.navigate(['/get-nome', this.nomeProduto])
+    }
+  }
 }
