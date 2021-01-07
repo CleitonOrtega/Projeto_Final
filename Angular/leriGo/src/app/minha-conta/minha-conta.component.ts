@@ -41,6 +41,8 @@ export class MinhaContaComponent implements OnInit {
 
   senha!: string
   confirmarSenha!: string
+
+  idUsuario: number = Number(localStorage.getItem('id'))
   
   constructor(
     private produtoService: ProdutoService,
@@ -52,17 +54,14 @@ export class MinhaContaComponent implements OnInit {
     private alert: AlertasService
   ) { }
 
-  
 
 
   ngOnInit(){
     window.scroll(0,0)
 
-    console.log(this.env.id)
-
-    this.getByIdUsuario()
     this.findAllCategorias()
     this.findAllProdutos()
+    this.getByIdUsuario()
   }
 
   
@@ -142,17 +141,28 @@ export class MinhaContaComponent implements OnInit {
   }
 
   salvar(){  
+    if(this.testeTipo == '1'){
+      this.tipoProduto = 1
+    }else if(this.testeTipo == '3'){
+      this.tipoProduto = 3
+    }else{
+      this.tipoProduto = 5
+    }
+    if(this.tipoProduto == null){
+      this.alert.showAlertDanger('Preencha todos os campos corretamente antes de enviar')
+    }else{
+      this.findByIdCategoria(this.tipoProduto)
+      this.produto.categoria = this.categoria
+  
+      this.produtoService.putProduto(this.produto).subscribe((resp: Produto)=>{
+      this.produto = resp
+      this.router.navigate(['/minhaConta'])
+      this.alert.showAlertInfo('Postagem alterada com sucesso')
+      window.location.reload()
+      })
 
-    this.produtoService.putProduto(this.produto).subscribe((resp: Produto)=>{
-    this.produto = resp
-    this.router.navigate(['/minhaConta'])
-    this.alert.showAlertInfo('Postagem alterada com sucesso')
-    window.location.reload()
-    }, err =>{
-      if(err.status == '500'){
-        this.alert.showAlertDanger('Preencha todos os campos corretamente antes de enviar')
-      }
-    })
+    }
+    
   }
   
   
@@ -163,7 +173,7 @@ carregarImagemPreview(event: any) {
 }
 
 getByIdUsuario(){
-  this.usuarioService.getByIdUsuario(this.env.id).subscribe((resp: Usuario) =>{
+  this.usuarioService.getByIdUsuario(this.idUsuario).subscribe((resp: Usuario) =>{
     this.usuario = resp
   })
 }
@@ -175,10 +185,11 @@ atualizarDados(){
     this.usuario.senha = this.senha
     this.usuarioService.putUsuario(this.usuario).subscribe((resp: Usuario) =>{
       this.usuario = resp
-      this.env.nome = this.usuario.nome
+      localStorage.setItem('nome', this.usuario.nome)
       this.env.email = this.usuario.email
       this.env.senha = this.usuario.senha
       window.scroll(0,0)
+      window.location.reload()
       this.alert.showAlertSuccess('Dados Alterados com sucesso')
     })
 

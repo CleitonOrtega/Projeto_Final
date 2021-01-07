@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
+import { Usuario } from '../model/usuario';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-perfil-lateral',
@@ -8,11 +10,22 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class PerfilLateralComponent implements OnInit {
 
-  env = environment
-  
-  constructor() { }
+  usuario : Usuario = new Usuario()
 
-  ngOnInit(): void {
+  idUsuario : number = Number(localStorage.getItem('id'))
+  
+  constructor(
+    private usuarioService : UsuarioService
+  ) { }
+
+  ngOnInit(){
+    this.getByIdUsuario()
+  }
+
+  getByIdUsuario(){
+    this.usuarioService.getByIdUsuario(this.idUsuario).subscribe((resp: Usuario) =>{
+      this.usuario = resp
+    })
   }
 
 }

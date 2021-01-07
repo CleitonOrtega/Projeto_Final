@@ -31,21 +31,23 @@ export class NavbarComponent implements OnInit {
     ) { }
 
   ngOnInit(){
-    
+    this.nome()
   }
 
   nome(){
-
-    let Login = this.env.nome
-
-    return new String (Login)
+    let Login = localStorage.getItem('nome')
+    if(Login == null || Login == undefined || Login == ""){
+      return new String("Logar")
+    }else{
+      return new String (Login)
+    }
   }
 
   verificarLogin(){
 
-    let Login = this.env.nome
+    let Login = localStorage.getItem('nome')
 
-    if(Login == "Logar" || Login == "" || Login == " "){
+    if(Login == "Logar" || Login == "" || Login == " " || Login == null || Login == undefined){
       this.router.navigate(['/login'])
     }else{
       this.router.navigate(['/minhaConta'])
