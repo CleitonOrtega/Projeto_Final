@@ -188,9 +188,9 @@ atualizarDados(){
       localStorage.setItem('nome', this.usuario.nome)
       this.env.email = this.usuario.email
       this.env.senha = this.usuario.senha
-      window.scroll(0,0)
-      window.location.reload()
       this.alert.showAlertSuccess('Dados Alterados com sucesso')
+      window.location.reload()
+      window.scroll(0,0)
     })
 
   }

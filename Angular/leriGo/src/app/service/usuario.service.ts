@@ -25,5 +25,4 @@ export class UsuarioService {
     return this.http.put<Usuario>(`http://localhost:8080/usuario`, usuario, this.token)
   }
 
-  
 }

@@ -18,7 +18,7 @@ export class ProdutoService {
 
   getAllProdutos() : Observable<Produto[]>
 {
-  return this.http.get<Produto[]>('http://localhost:8080/produtos', this.token)
+  return this.http.get<Produto[]>('http://localhost:8080/produtos')
 }
 
 getByIdProduto(id: number) : Observable<Produto>{
@@ -42,6 +42,6 @@ deleteProduto(id: number): Observable<Produto>{
 }
 
 getByNomeProduto(nome: string): Observable<Produto[]> {
-  return this.http.get<Produto[]>(`http://localhost:8080/produtos/nome.${nome}`, this.token)
+  return this.http.get<Produto[]>(`http://localhost:8080/produtos/nome.${nome}`)
 }
 }

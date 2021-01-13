@@ -82,8 +82,6 @@ export class DoacaoComponent implements OnInit {
     this.produtoService.deleteProduto(this.idProd).subscribe(()=>{
       this.router.navigate(['/doacao'])
       this.alert.showAlertSuccess('Produto doado com sucesso, dentro de alguns dias você receberá a confirmação da entrega por email')
-      window.location.reload()
-      window.scroll(0,0)
     })
   }
   identificarId(id: number){
